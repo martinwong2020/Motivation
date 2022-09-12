@@ -7,7 +7,7 @@ function About() {
     <div className="about_container">
       <div className="text_container">
         <div>
-          <h1 className="title">About The Project</h1>
+          <h1 className="title">About The Project:</h1>
           <div className="about_text_container">
             <h3 className="about_text"> 
               The Inspiration behind the project is to develop a website that can help 
