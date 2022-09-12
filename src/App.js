@@ -29,6 +29,7 @@ function App() {
             </li>
           </ul>
         </div>
+        <About/>
         <Routes>
           <Route exact path="/" element={<About/>}></Route>
           <Route exact path="/gumball" element={<Gumball/>}></Route>
