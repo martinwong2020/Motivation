@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Motivation/static/css/main.11b18781.css",
-    "main.js": "/Motivation/static/js/main.31b82cd4.js",
+    "main.js": "/Motivation/static/js/main.d29984d9.js",
     "static/media/japan_light.jpg": "/Motivation/static/media/japan_light.3f27f1e37b58ae5a935b.jpg",
     "static/media/sakura.PNG": "/Motivation/static/media/sakura.f59b73b3e8f8a75732f4.PNG",
     "index.html": "/Motivation/index.html",
     "main.11b18781.css.map": "/Motivation/static/css/main.11b18781.css.map",
-    "main.31b82cd4.js.map": "/Motivation/static/js/main.31b82cd4.js.map"
+    "main.d29984d9.js.map": "/Motivation/static/js/main.d29984d9.js.map"
   },
   "entrypoints": [
     "static/css/main.11b18781.css",
-    "static/js/main.31b82cd4.js"
+    "static/js/main.d29984d9.js"
   ]
 }
