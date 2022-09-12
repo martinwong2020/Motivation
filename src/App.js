@@ -19,7 +19,7 @@ function App() {
         <div className="Header">
           <ul className="Nav">
             <li>
-              <Link className="NavIcon" to="/">About</Link>
+              <Link className="NavIcon" to="/about">About</Link>
             </li>
             <li>
               <Link className="NavIcon" to="/gumball">Gumball</Link>
@@ -31,7 +31,7 @@ function App() {
         </div>
         <About/>
         <Routes>
-          <Route exact path="/" element={<About/>}></Route>
+          <Route exact path="/about" element={<About/>}></Route>
           <Route exact path="/gumball" element={<Gumball/>}></Route>
           <Route exact path="/donation" element={<Donation/>}></Route>
         </Routes>
