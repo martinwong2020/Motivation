@@ -29,7 +29,7 @@ function App() {
             </li>
           </ul>
         </div>
-        <h1>Welcome to the Page1</h1>
+        <About/>
         <Routes>
           <Route exact path="/about" element={<About/>}></Route>
           <Route exact path="/gumball" element={<Gumball/>}></Route>
