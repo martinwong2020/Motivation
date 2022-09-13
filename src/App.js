@@ -30,6 +30,8 @@ function App() {
           </ul>
         </div>
         <About/>
+        <Gumball/>
+        <Donation/>
         <Routes>
           <Route exact path="/about" element={<About/>}></Route>
           <Route exact path="/gumball" element={<Gumball/>}></Route>
