@@ -4,7 +4,7 @@ import light_img from "../images/japan_light.jpg";
 
 function About() {
   return (
-    <div className="about_container">
+    <div className="about_container" id="about_container">
       <div className="text_container">
         <div>
           <h1 className="title">About The Project INSPIRE:</h1>
@@ -16,7 +16,6 @@ function About() {
               coding. This project is to help create a positive impact to the community by spreading
               positivity and motivational speech to others. Help others by submitting an uplifiting 
               speech to bring others up.
-              
             </h3>
           </div>
         </div>
@@ -27,7 +26,7 @@ function About() {
               <div className="about_top_card"
                 style={{backgroundImage:`url(${light_img})`,}}>
               </div>
-              <div type="text" id="quote_sub" className="about_bottom_card">
+              <div type="text" id="about_quote_sub" className="about_bottom_card">
                 <h3>Motivation starts with you</h3>
               </div>
             </div>

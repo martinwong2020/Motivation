@@ -90,11 +90,14 @@ function Gumball() {
 
   function Retrieve(){
     let bottom_note=document.getElementById("bottom_note");
-    bottom_note.append(localStorage.getItem("quote"));
-    console.log(localStorage.getItem("quote"));
+    let result= JSON.parse(localStorage.getItem("Submissions"));
+    let rand_num=Math.floor(Math.random()*Object.keys(result).length);
+    
+    bottom_note.append(result[rand_num]);
+    // console.log(localStorage.getItem("quote"));
   }
   return (
-    <div className="Gumball_container">
+    <div className="Gumball_container" id="Gumball_container">
       <div className="Gumball_machine">
         <div className="Handle GumBall">
           <div className="Handle_content GumBall"></div>

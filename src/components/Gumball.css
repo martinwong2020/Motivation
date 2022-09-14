@@ -1,7 +1,7 @@
 .Gumball_container{
     margin-top:0vh;
     height:90vh;
-    width:100vw;
+    width:100%;
     /* border:pink solid 2px; */
     display:flex;
     justify-content:center;
