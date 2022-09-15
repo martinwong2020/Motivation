@@ -79,5 +79,11 @@ export default class DB{
             console.log(doc);
         })
     }
+    async remove25(){
+        let data=this.db
+        this.db.get('quote25').then(function (doc) {
+            return data.remove(doc);
+        });
+    }
 
 }
