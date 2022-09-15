@@ -142,7 +142,7 @@ function Gumball() {
       "linear-gradient(150deg,rgb(91, 212, 87),rgb(91, 212, 87) 50%,white 51%)",
       "linear-gradient(150deg,rgb(253, 255, 159),rgb(231, 233, 125) 50%,white 51%)",
       "linear-gradient(105deg,rgb(111, 111, 203),rgb(111, 111, 203) 50%,white 51%)",
-      "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%);",
+      "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%)",
       "linear-gradient(300deg,rgb(228, 105, 105),rgb(228, 105, 105) 50%,white 51%)"
     ]
     let border_col=[
