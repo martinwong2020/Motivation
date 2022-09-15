@@ -97,7 +97,7 @@ export default class DB{
                 }).then(function(){
                     return Data.get(quote_id);
                 }).then(function(doc){
-                    console.log(doc);
+                    // console.log(doc);
                 })
             }
         })
@@ -122,7 +122,7 @@ export default class DB{
         }).then(function(){
             return Data.get(id);
         }).then(function(doc){
-            console.log(doc);
+            // console.log(doc);
         })
     }
     async remove25(){

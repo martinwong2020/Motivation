@@ -25,7 +25,7 @@ function Gumball() {
   //   }
   // },[BallClick]);
   function ShakeEffect(){
-    console.log("Here")
+
     let machine=document.getElementsByClassName("GumBall");
     Object.keys(machine).forEach(function(key,value){
       machine[key].style.setProperty("animation","shake 0.5s");
@@ -67,6 +67,7 @@ function Gumball() {
       },3000)
       setTimeout(function(){
         ball.style.animation="";
+        randocolor();
         // Retrieve();
         getData();
       },5000)
@@ -140,7 +141,7 @@ function Gumball() {
     let colors=[
       "linear-gradient(150deg,rgb(91, 212, 87),rgb(91, 212, 87) 50%,white 51%)",
       "linear-gradient(150deg,rgb(253, 255, 159),rgb(231, 233, 125) 50%,white 51%)",
-      "linear-gradient(105deg,rgb(111, 111, 204),rgb(111, 111, 204) 50%,white 51%)",
+      "linear-gradient(105deg,rgb(111, 111, 203),rgb(111, 111, 203) 50%,white 51%)",
       "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%);",
       "linear-gradient(300deg,rgb(228, 105, 105),rgb(228, 105, 105) 50%,white 51%)"
     ]
@@ -151,15 +152,17 @@ function Gumball() {
       "solid 5px rgb(57, 130, 190)",
       "solid 5px rgb(228, 59, 59)"
     ]
-  let num=Math.floor(Math.random()*5);
-  return colors[num];
+    let num=Math.floor(Math.random()*5);
+    let cap=document.getElementById("caps15");
+    cap.style.setProperty("background",colors[num]);
+    cap.style.setProperty("border",border_col[num]);
   }
   useEffect(()=>{
     let colors=[
       "linear-gradient(150deg,rgb(91, 212, 87),rgb(91, 212, 87) 50%,white 51%)",
       "linear-gradient(150deg,rgb(253, 255, 159),rgb(231, 233, 125) 50%,white 51%)",
-      "linear-gradient(105deg,rgb(111, 111, 204),rgb(111, 111, 204) 50%,white 51%)",
-      "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%);",
+      "linear-gradient(105deg,rgb(75, 75, 187),rgb(75, 75, 187) 50%,white 51%)",
+      "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%)",
       "linear-gradient(300deg,rgb(228, 105, 105),rgb(228, 105, 105) 50%,white 51%)"
     ]
     let border_col=[
@@ -170,6 +173,7 @@ function Gumball() {
       "solid 5px rgb(228, 59, 59)"
     ]
   let num=Math.floor(Math.random()*5);
+
   let cap=document.getElementById("caps15");
   cap.style.setProperty("background",colors[num]);
   cap.style.setProperty("border",border_col[num]);
