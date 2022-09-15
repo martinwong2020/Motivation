@@ -61,8 +61,8 @@ export default class DB{
         let Data=this.db;
         this.db.allDocs({include_docs: true}).then(function(result){
             let num=result.rows.length
-            if(num==0){
-                let run=true;
+            if(num<=0){
+                this.DestroyDB();
                 for(let i=0; i<25;i++){
                     let quote_id="quote"+(i+1).toString();
                     const result= Data.put({
