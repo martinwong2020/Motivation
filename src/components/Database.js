@@ -31,11 +31,12 @@ export default class DB{
         // this.db.get("quote4").then(function(doc){
         //     delete(doc._rev)
         // })
+        let Data=this.db;
         this.db.allDocs({include_docs: true}).then(function(result){
             let num=result.rows.length
             if(num<25){
                 let quote_id="quote"+(num+1).toString();
-                const result= this.db.put({
+                const result= Data.put({
                     _id:quote_id,
                     // _rev:"1-quote5",
                     content:quote
@@ -43,7 +44,7 @@ export default class DB{
             }
             else{
                 let num=Math.ceil(Math.random()*25)
-                let Data=this.db;
+                
                 let quote_id="quote"+num.toString();
                 Data.get(quote_id).then(function(doc){
                     doc.content=quote;
