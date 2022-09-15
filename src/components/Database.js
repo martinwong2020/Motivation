@@ -31,9 +31,46 @@ export default class DB{
         // this.db.get("quote4").then(function(doc){
         //     delete(doc._rev)
         // })
+        let Speech=[
+            "“Everything you can imagine is real.” — Pablo Picasso",
+            "Why not start now?",
+            "The best time to plant a tree was 20 years ago. The next best time is now!",
+            "If not today, then when?",
+            "It's not about the goal, rather focus on the journey and things that are pertinent.",
+            "Difficult road often leads to beautiful arrivals.",
+            "Opportunities don't happen, you create them.",
+            "It's time to embrace and start on your goals.",
+            "“If you want to buy things without looking at the price. Work without looking at the clock.” - @IAmAaronWill",
+            "If the plan doesn't work, change the plan but never change your goal.",
+            "It's easy to give up but holding it together will make you stand out.",
+            "'Success is not final; failure is not fatal: It is… to continue that counts.' — Winston S. Churchill",
+            "“Don’t let yesterday take up too much of today.” — Will Rogers'",
+            "Failure builds character.",
+            "“Either you run the day or the day runs you.” — Jim Rohn",
+            "Take a second to understand what's holding you bac…Now think about what you can do by overcoming it.",
+            "“When we strive to become better than we are, ever…ing around us becomes better too.” — Paulo Coelho",
+            "“You've got to get up every morning with determina…to go to bed with satisfaction.” — George Lorimer",
+            "“The most difficult thing is the decision to act, the rest is merely tenacity.” —Amelia Earhart",
+            "The best preparation for tomorrow is what you do today.",
+            "Start by doing what's necessary. Then you will do …sible. Eventually you'll be doing the impossible.",
+            "Starting your goal will help spiral you to reach your goal.",
+            "Understand how to grow by planning and starting today",
+            "Just do it",
+            "You got it!"    
+        ]
         let Data=this.db;
         this.db.allDocs({include_docs: true}).then(function(result){
             let num=result.rows.length
+            if(num==0){
+                let run=true;
+                for(let i=0; i<25;i++){
+                    let quote_id="quote"+(i+1).toString();
+                    const result= Data.put({
+                        _id:quote_id,
+                        content:Speech[i]
+                    })
+                }
+            }
             if(num<25){
                 let quote_id="quote"+(num+1).toString();
                 const result= Data.put({
