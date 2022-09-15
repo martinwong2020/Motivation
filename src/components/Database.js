@@ -1,5 +1,5 @@
 import PouchDB from 'pouchdb';
-
+import React, { useState } from 'react';
 export default class DB{
     constructor(){
         this.db=new PouchDB("Quote_Submission");
@@ -31,24 +31,37 @@ export default class DB{
         // this.db.get("quote4").then(function(doc){
         //     delete(doc._rev)
         // })
-        
+        this.db.allDocs({include_docs: true}).then(function(result){
+            let num=result.rows.length
+            if(num<25){
+                let quote_id="quote"+(num+1).toString();
+                const result= this.db.put({
+                    _id:quote_id,
+                    // _rev:"1-quote5",
+                    content:quote
+                })
+            }
+            else{
+                let num=Math.ceil(Math.random()*25)
+                let Data=this.db;
+                let quote_id="quote"+num.toString();
+                Data.get(quote_id).then(function(doc){
+                    doc.content=quote;
+                    return Data.put(doc);
+                }).then(function(){
+                    return Data.get(quote_id);
+                }).then(function(doc){
+                    console.log(doc);
+                })
+            }
+        })
         // const result=await this.db.put({
         //     _id:"quote25",
         //     // _rev:"1-quote5",
         //     content:quote
         // })
         // return result;
-        let num=Math.ceil(Math.random()*25)
-        let Data=this.db;
-        let quote_id="quote"+num.toString();
-        Data.get(quote_id).then(function(doc){
-            doc.content=quote;
-            return Data.put(doc);
-        }).then(function(){
-            return Data.get(quote_id);
-        }).then(function(doc){
-            console.log(doc);
-        })
+        
 
     }
 
@@ -65,4 +78,5 @@ export default class DB{
             console.log(doc);
         })
     }
+
 }
