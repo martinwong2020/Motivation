@@ -9,9 +9,8 @@ import DB from './Database'
 function Gumball() {
   
   const [BallState,setBallState]=useState(false);
-  const [BallClick,setBallClick]=useState(false);
+  const [CardOut,setCardOut]=useState(false);
   const capsule=useRef();
-  const tl=useRef();
   // useEffect(()=>{
   //   if (BallState==true){
   //     console.log("went");
@@ -45,27 +44,33 @@ function Gumball() {
   }
 
   function CapsuleOpen(){
+    console.log(BallState);
     let ball=document.getElementById("caps15");
     let note=document.getElementById("Note");
-    let top_card=document.getElementById("top_note")
-    const css = window.document.styleSheets[0];
-      css.insertRule(`
-      @keyframes enlarge {
-        0% {transform: translateY(380px) rotate(100deg); z-index:101;}
-        99% {transform:translate(-100px,10px) rotate(350deg); z-index:1000; height:130px; width:130px;}
-        100%{display:none}
-      }`, css.cssRules.length);
+    let top_card=document.getElementById("top_note");
+    let bottom_card=document.getElementById("bottom_note");
+    // const css = window.document.styleSheets[0].insertRule(`
+    //   @keyframes enlarge {
+    //     0% {transform: translateY(380px) rotate(100deg); z-index:101;}
+    //     100% {transform:translate(-100px,10px) rotate(350deg); z-index:1000; height:130px; width:130px;}   
+    //   }`, window.document.styleSheets[0].cssRules.length);
+
     if (BallState==true){
-      ball.style.animation="enlarge 3s forwards";
+      // ball.style.animation="enlarge 3s forwards";
+      // ball.style.setProperty("top","1330px");
+      ball.style.setProperty("animation","enlarge linear 3s forwards");
       setTimeout(function(){
         note.style.setProperty("animation","card_container linear 2s forwards");
         top_card.style.setProperty("animation","top_card_enlarge linear 2s forwards");
+        bottom_card.style.setProperty("animation","bottom_card_enlarge linear 2s forwards");
+        
       },3000)
       setTimeout(function(){
+        ball.style.animation="";
         // Retrieve();
         getData();
       },5000)
-      setBallClick(true)
+      setCardOut(true)
     }
     
   }
@@ -108,6 +113,67 @@ function Gumball() {
     let bottom_note=document.getElementById("bottom_note");
     state.db.getQuoteId(quote_id,bottom_note);
   }
+
+  function reset(){
+    let note=document.getElementById("Note");
+    let top_card=document.getElementById("top_note");
+    let bottom_note=document.getElementById("bottom_note");
+    note.style.setProperty("animation","card_container_shrink linear 2s forwards");
+    top_card.style.setProperty("animation","top_card_shrink linear 2s forwards");
+    bottom_note.style.setProperty("animation","bottom_card_shrink linear 2s forwards");
+    bottom_note.innerHTML="";
+
+    let machine=document.getElementsByClassName("GumBall");
+    Object.keys(machine).forEach(function(key,value){
+      machine[key].style.removeProperty("animation","shake 0.5s");
+    })
+
+
+    let ball=document.getElementById("caps15");
+    if (BallState==true){
+      // ball.style.animation="";
+      setBallState(false);
+    }
+    setCardOut(false);
+  }
+  function randocolor(){
+    let colors=[
+      "linear-gradient(150deg,rgb(91, 212, 87),rgb(91, 212, 87) 50%,white 51%)",
+      "linear-gradient(150deg,rgb(253, 255, 159),rgb(231, 233, 125) 50%,white 51%)",
+      "linear-gradient(105deg,rgb(111, 111, 204),rgb(111, 111, 204) 50%,white 51%)",
+      "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%);",
+      "linear-gradient(300deg,rgb(228, 105, 105),rgb(228, 105, 105) 50%,white 51%)"
+    ]
+    let border_col=[
+      "solid 5px rgb(123, 233, 101)",
+      "solid 5px rgb(231, 235, 0)",
+      "solid 5px rgb(85, 85, 247)",
+      "solid 5px rgb(57, 130, 190)",
+      "solid 5px rgb(228, 59, 59)"
+    ]
+  let num=Math.floor(Math.random()*5);
+  return colors[num];
+  }
+  useEffect(()=>{
+    let colors=[
+      "linear-gradient(150deg,rgb(91, 212, 87),rgb(91, 212, 87) 50%,white 51%)",
+      "linear-gradient(150deg,rgb(253, 255, 159),rgb(231, 233, 125) 50%,white 51%)",
+      "linear-gradient(105deg,rgb(111, 111, 204),rgb(111, 111, 204) 50%,white 51%)",
+      "linear-gradient(100deg,rgb(125, 184, 233),rgb(125, 184, 233) 50%,white 51%);",
+      "linear-gradient(300deg,rgb(228, 105, 105),rgb(228, 105, 105) 50%,white 51%)"
+    ]
+    let border_col=[
+      "solid 5px rgb(123, 233, 101)",
+      "solid 5px rgb(231, 235, 0)",
+      "solid 5px rgb(85, 85, 247)",
+      "solid 5px rgb(57, 130, 190)",
+      "solid 5px rgb(228, 59, 59)"
+    ]
+  let num=Math.floor(Math.random()*5);
+  let cap=document.getElementById("caps15");
+  cap.style.setProperty("background",colors[num]);
+  cap.style.setProperty("border",border_col[num]);
+  },[]);
   return (
     <div className="Gumball_container" id="Gumball_container">
       <div className="Gumball_machine">
@@ -136,8 +202,12 @@ function Gumball() {
             ()=>{
               CapsuleOpen();
             }
-          }></div>
-            <div className="card_container" id="Note">
+          } ></div>
+            <div className="card_container" id="Note" onClick={
+              ()=>{
+                reset();
+              }
+            }>
               <div className="top_note" id="top_note"
                 style={{backgroundImage:`url(${sakura})`}}>
               </div>
@@ -147,9 +217,11 @@ function Gumball() {
         </div>
         <div className="Gumball_body GumBall">
           <div className="Gumball_turn GumBall" onClick={()=>{
-            ShakeEffect();
-            HandleTurn();
-            BallDrop();
+            if(CardOut==false){
+              ShakeEffect();
+              HandleTurn();
+              BallDrop();
+            }
           }}>
             <div className="Gumball_handle GumBall">
             </div>

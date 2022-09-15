@@ -251,13 +251,37 @@
     50%{height:100px; width:200px; top:37.5vh; left:45vw;}
     100%{height:200px; width:400px; top:25vh; left:39vw; }
 }
-
+@keyframes bottom_card_enlarge{
+    0%{height:0px; width:0px; top:50vh; left:50vw; }
+    50%{height:100px; width:200px; top:37.5vh; left:45vw;}
+    100%{height:400px; width:400px; top:25vh; left:39vw; }
+}
 @keyframes card_container{
     0%{height:0px; width:0px; top:50vh; left:50vw; border:black solid 0px; z-index:10001}
     50%{height:300px; width:200px; top:37.5vh; left:45vw;border:black solid 2.5px; z-index:10001}
     100%{height:600px; width:400px; top:25vh; left:39vw;  border:black solid 5px; z-index:10001}
 }
 
+@keyframes top_card_shrink{
+    0%{height:200px; width:400px; top:25vh; left:39vw;}
+    50%{height:100px; width:200px; top:37.5vh; left:45vw;}
+    100%{height:0px; width:0px; top:50vh; left:50vw; }
+}
+@keyframes bottom_card_shrink{
+    0%{height:240px; width:400px; top:25vh; left:39vw;}
+    50%{height:200px; width:200px; top:37.5vh; left:45vw;}
+    100%{height:0px; width:0px; top:50vh; left:50vw; }
+}
+@keyframes card_container_shrink{
+    0%{height:600px; width:400px; top:25vh; left:39vw;  border:black solid 5px; z-index:10001}
+    50%{height:300px; width:200px; top:37.5vh; left:45vw;border:black solid 2.5px; z-index:10001}
+    100%{height:0px; width:0px; top:50vh; left:50vw; border:black solid 0px; z-index:10001}
+}
+
+@keyframes enlarge {
+    0% {transform: translateY(380px) rotate(100deg); z-index:100001;}
+    100% {transform:translate(-100px,10px) rotate(350deg); z-index:1000; height:130px; width:130px;}
+}
 
 /* .card_outer{
     height:610px;
