@@ -5,6 +5,7 @@ import {useState,useEffect,useRef} from "react";
 import{gsap} from "gsap";
 
 import sakura from "../images/sakura.PNG";
+import DB from './Database'
 function Gumball() {
   
   const [BallState,setBallState]=useState(false);
@@ -61,7 +62,8 @@ function Gumball() {
         top_card.style.setProperty("animation","top_card_enlarge linear 2s forwards");
       },3000)
       setTimeout(function(){
-        Retrieve();
+        // Retrieve();
+        getData();
       },5000)
       setBallClick(true)
     }
@@ -95,6 +97,16 @@ function Gumball() {
     
     bottom_note.append(result[rand_num]);
     // console.log(localStorage.getItem("quote"));
+  }
+  let state={
+    db:new DB(),
+    quotes: {}
+  }
+  function getData(){
+    let num=Math.ceil(Math.random()*25);
+    let quote_id="quote"+num.toString();
+    let bottom_note=document.getElementById("bottom_note");
+    state.db.getQuoteId(quote_id,bottom_note);
   }
   return (
     <div className="Gumball_container" id="Gumball_container">

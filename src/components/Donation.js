@@ -1,11 +1,11 @@
 import { upload } from '@testing-library/user-event/dist/upload'
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Inspire.css";
 
 import sakura from "../images/sakura.PNG";
 // import PouchDB from 'pouchdb-browser';
 // import {Provider} from 'use-pouchdb';
-
+import DB from './Database'
 
 function Upload(){
   let submission=document.getElementById("quote_sub").textContent;
@@ -22,18 +22,37 @@ function Upload(){
   console.log(localStorage.getItem("Submissions"));
 
 }
-function Donation() {
-  // let quotes=
-  //   {
-  //     1:"Opportunities don't come, they are created!",
-  //     2:"If not today, not tomorrow, then when?",
-  //     3:"Success comes from learning and new experience.",
-  //     4:"Fortune favors the bold.",
-  //     5:"The best time to plant the tree was 20 years ago. The next best time is now!"
-  //   }
-  // localStorage.setItem("Submissions",JSON.stringify(quotes));
-  // const db= new PouchDB('local');
 
+
+function Donation() {
+  let state={
+    db:new DB(),
+    quotes: {}
+  }
+  async function printcontent(quote){
+    // return await state.db.getQuoteId(quote)
+    state.db.createQuotes("ye")
+  }
+  useEffect(()=>{
+    // state.db.DestroyDB();
+    
+    console.log(state.db.getAllQuotes());
+    // // console.log(state.db.GetRev("quote2"));
+    // // console.log(state.db.createQuotes("ye"));
+    // console.log(state.db.getQuoteId("quote3"));
+    // let text=document.getElementById("quote_sub");
+    // // text.append();
+    // state.db.getQuoteId("quote2",text);
+    // console.log(printcontent("quote3"));
+  },[]);
+  async function SubmitQuote(){
+    let submission= document.getElementById("quote_sub").textContent;
+    await state.db.getAllQuotes();
+    await state.db.createQuotes(submission);
+    // console.log(state.db.getAllQuotes());
+    
+  }
+  
   return (
     <div className="body" id="Inspire_container">
       <div className="card_outer">
@@ -43,8 +62,10 @@ function Donation() {
           </div>
           <div type="text" id="quote_sub" className="bottom_card" contentEditable="true" data-text="Inspire Others Here:" onKeyDown={(e)=>{
             if(e.key=="Enter"){
-              console.log("we");
-              Upload();
+              // console.log("we");
+              // Upload();
+              SubmitQuote();
+
             }
           }}>
           </div>
