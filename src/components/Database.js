@@ -59,10 +59,13 @@ export default class DB{
             "You got it!"    
         ]
         let Data=this.db;
+        let dbdestroy=this.DestroyDB();
         this.db.allDocs({include_docs: true}).then(function(result){
             let num=result.rows.length
+            console.log("here");
+            console.log(num);
             if(num<=10){
-                this.DestroyDB();
+                // dbdestroy;
                 for(let i=0; i<25;i++){
                     let quote_id="quote"+(i+1).toString();
                     const result= Data.put({
