@@ -35,9 +35,12 @@ function Donation() {
   }
   useEffect(()=>{
     // printcontent("w");
-    state.db.createQuotes("Hi");
+    // state.db.createQuotes("Hi");
     // state.db.remove25();
+    console.log("before")
+    state.db.create25();
     console.log(state.db.getAllQuotes());
+    console.log("after")
     // // console.log(state.db.GetRev("quote2"));
     // // console.log(state.db.createQuotes("ye"));
     // console.log(state.db.getQuoteId("quote3"));

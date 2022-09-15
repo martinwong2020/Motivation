@@ -20,17 +20,7 @@ export default class DB{
         })
         return quotes;
     }
-
-    async createQuotes(quote){
-        // quote.createdAt = new Date();
-        // quote.updatedAt = new Date();
-        
-        //the ... destruct the quote argument
-        //https://stackoverflow.com/questions/31048953/what-are-these-three-dots-in-react-doing#:~:text=(three%20dots%20in%20JavaScript)%20is,It%20is%20a%20JavaScript%20operator.
-        // const result=await this.db.post({...quote});
-        // this.db.get("quote4").then(function(doc){
-        //     delete(doc._rev)
-        // })
+    async create25(){
         let Speech=[
             "“Everything you can imagine is real.” — Pablo Picasso",
             "Why not start now?",
@@ -60,10 +50,9 @@ export default class DB{
         ]
         let Data=this.db;
         this.db.allDocs({include_docs: true}).then(function(result){
+            
             let num=result.rows.length
-            console.log("here");
-            console.log(num);
-            if(num<=10){
+            if(num==0){
                 // dbdestroy;
                 for(let i=0; i<25;i++){
                     let quote_id="quote"+(i+1).toString();
@@ -73,7 +62,24 @@ export default class DB{
                     })
                 }
             }
+        });
+    }
+    async createQuotes(quote){
+        // quote.createdAt = new Date();
+        // quote.updatedAt = new Date();
+        
+        //the ... destruct the quote argument
+        //https://stackoverflow.com/questions/31048953/what-are-these-three-dots-in-react-doing#:~:text=(three%20dots%20in%20JavaScript)%20is,It%20is%20a%20JavaScript%20operator.
+        // const result=await this.db.post({...quote});
+        // this.db.get("quote4").then(function(doc){
+        //     delete(doc._rev)
+        // })
+        
+        let Data=this.db;
+        this.db.allDocs({include_docs: true}).then(function(result){
+            let num=result.rows.length
             if(num<25){
+
                 let quote_id="quote"+(num+1).toString();
                 const result= Data.put({
                     _id:quote_id,
