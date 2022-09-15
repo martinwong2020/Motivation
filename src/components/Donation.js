@@ -31,10 +31,10 @@ function Donation() {
   }
   async function printcontent(quote){
     // return await state.db.getQuoteId(quote)
-    state.db.createQuotes("ye")
+    await state.db.DestroyDB();
   }
   useEffect(()=>{
-    // state.db.DestroyDB();
+    // printcontent("w");
     state.db.createQuotes("hi");
     // state.db.remove25();
     // console.log(state.db.getAllQuotes());

@@ -59,7 +59,6 @@ export default class DB{
             "You got it!"    
         ]
         let Data=this.db;
-        let dbdestroy=this.DestroyDB();
         this.db.allDocs({include_docs: true}).then(function(result){
             let num=result.rows.length
             console.log("here");
@@ -108,6 +107,7 @@ export default class DB{
 
     async DestroyDB(){
         this.db.destroy("Quote_Submission");
+        this.db=new PouchDB("Quote_Submission");
     }
     async getQuoteId(id,elem){
         let Data=this.db;
